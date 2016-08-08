@@ -5,10 +5,18 @@ using System.Collections.Generic;
 public class BoostAnimation : MonoBehaviour
 {
     public Square square;
+    public BoostType type = BoostType.None;
 
     public void ShowEffect()
     {
-        GameObject partcl = Instantiate(Resources.Load("Prefabs/Effects/Firework"), transform.position, Quaternion.identity) as GameObject;
+        GameObject partcl;
+        //Debug.Log("boost type:" + LevelManager.THIS.ActivatedBoost.type);
+
+        if (type == BoostType.Bomb)
+            partcl = Instantiate(Resources.Load("Prefabs/Effects/Firework_boom"), transform.position, Quaternion.identity) as GameObject;
+        else if (type == BoostType.Random_color)
+            partcl = Instantiate(Resources.Load("Prefabs/Effects/Firework_random_color"), transform.position, Quaternion.identity) as GameObject;
+        else partcl = Instantiate(Resources.Load("Prefabs/Effects/Firework"), transform.position, Quaternion.identity) as GameObject;
       //  partcl.GetComponent<ParticleSystem>().startColor = LevelManager.THIS.scoresColors[square.item.color];
         Destroy(partcl, 1f);
 

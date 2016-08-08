@@ -852,6 +852,7 @@ public class Item : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
 
             GameObject partcl = Instantiate(Resources.Load("Prefabs/Effects/Firework"), transform.position, Quaternion.identity) as GameObject;
+
             if (partcl.GetComponent<ParticleSystem>())
                 partcl.GetComponent<ParticleSystem>().startColor = LevelManager.THIS.scoresColors[color];
             Destroy(partcl, 1f);

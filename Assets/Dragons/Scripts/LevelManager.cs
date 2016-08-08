@@ -126,10 +126,23 @@ public class LevelManager : MonoBehaviour
             {
                 if (activatedBoost.type == BoostType.ExtraMoves || activatedBoost.type == BoostType.ExtraTime)
                 {
+                    GameObject partcl;
+
                     if (LevelManager.Instance.limitType == LIMIT.MOVES)
+                    {
+                        partcl = Instantiate(Resources.Load("Prefabs/Effects/Boost_+5")) as GameObject;
+                        partcl.transform.SetParent(InGameBoosts[0].transform);
+                        partcl.transform.localPosition = Vector3.zero;
+                        Destroy(partcl, 2.0f);
                         LevelManager.THIS.Limit += 5;
+                    }
                     else
+                    {
+                        partcl = Instantiate(Resources.Load("Prefabs/Effects/Boost_+30")) as GameObject;
+                        partcl.transform.SetParent(InGameBoosts[1].transform);
+                        partcl.transform.localPosition = Vector3.zero;
                         LevelManager.THIS.Limit += 30;
+                    }
 
                     ActivatedBoost = null;
                 }
